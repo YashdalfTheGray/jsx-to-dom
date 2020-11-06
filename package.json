@@ -1,0 +1,25 @@
+{
+  "name": "jsx-to-dom",
+  "version": "0.0.1",
+  "description": "A Typescript library that tries to build a complete enough JSX pragma function that outputs native DOM calls when used with Babel.js.",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "nyc ava"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YashdalfTheGray/jsx-to-dom.git"
+  },
+  "keywords": [
+    "jsx",
+    "dom",
+    "typescript",
+    "babel"
+  ],
+  "author": "Yash Kulshrestha",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/YashdalfTheGray/jsx-to-dom/issues"
+  },
+  "homepage": "https://github.com/YashdalfTheGray/jsx-to-dom#readme"
+}
