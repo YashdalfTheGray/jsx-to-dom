@@ -1,1 +1,3 @@
-(async () => console.log(await Promise.resolve('test')))();
+export async function getMessage() {
+  return await Promise.resolve('this is a test.');
+}
