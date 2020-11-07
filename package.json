@@ -6,9 +6,11 @@
   "scripts": {
     "test": "nyc ava",
     "test-no-coverage": "ava",
+    "prebuild": "npm run clean",
     "build": "tsc",
     "start": "npm run build",
-    "clean": "npx rimraf dist/"
+    "clean": "npx rimraf dist/",
+    "open-coverage": "npx open coverage/index.html"
   },
   "repository": {
     "type": "git",
@@ -55,5 +57,25 @@
     "require": [
       "ts-node/register"
     ]
+  },
+  "nyc": {
+    "include": [
+      "src/**/*.ts"
+    ],
+    "exclude": [
+      "src/**/*.spec.ts"
+    ],
+    "extension": [
+      ".ts"
+    ],
+    "require": [
+      "ts-node/register"
+    ],
+    "reporter": [
+      "text-summary",
+      "html"
+    ],
+    "sourceMap": true,
+    "instrument": true
   }
 }
