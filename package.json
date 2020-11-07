@@ -5,6 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "test": "nyc ava",
+    "test-no-coverage": "ava",
     "build": "tsc",
     "start": "npm run build",
     "clean": "npx rimraf dist/"
@@ -45,6 +46,14 @@
   "lint-staged": {
     "*.{js,jsx,ts,tsx,json,scss,css,md}": [
       "prettier --write"
+    ]
+  },
+  "ava": {
+    "extensions": [
+      "ts"
+    ],
+    "require": [
+      "ts-node/register"
     ]
   }
 }
