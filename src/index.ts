@@ -1,3 +1,8 @@
-export async function getMessage() {
-  return await Promise.resolve('this is a test.');
+export function createElement(
+  tag: string,
+  props: object,
+  ...children: HTMLElement[]
+) {
+  const element = document.createElement(tag);
+  return element;
 }
