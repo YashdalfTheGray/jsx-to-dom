@@ -16,8 +16,8 @@ export default function createElement(
   return element;
 }
 
-export function isEventHandler(propName: string) {
-  return propName.startsWith('on') && propName.toLowerCase() in window;
+export function isEventHandler(propName: string, windowObj = window) {
+  return propName.startsWith('on') && propName.toLowerCase() in windowObj;
 }
 
 export function extractEventName(propName: string) {
