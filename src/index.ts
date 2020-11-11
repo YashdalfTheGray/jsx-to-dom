@@ -22,6 +22,21 @@ export default function createElement(
   return element;
 }
 
+function appendChildHelper(
+  parent: HTMLElement,
+  children: string | HTMLElement | HTMLElement[]
+) {
+  if (Array.isArray(children)) {
+    children.forEach((child) => appendChildHelper(parent, child));
+  } else {
+    parent.appendChild(
+      typeof children === 'string'
+        ? document.createTextNode(children)
+        : children
+    );
+  }
+}
+
 export function isEventHandler(propName: string, windowObj = window) {
   return propName.startsWith('on') && propName.toLowerCase() in windowObj;
 }
