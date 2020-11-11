@@ -1,7 +1,4 @@
-export type FunctionalComponent = (
-  props: object,
-  ...children: HTMLElement[]
-) => HTMLElement;
+import { FunctionalComponent } from './types';
 
 export default function createElement(
   tag: string | FunctionalComponent,
@@ -31,6 +28,14 @@ export function createFragment(_: object = {}, ...children: HTMLElement[]) {
   return children;
 }
 
+export function isEventHandler(propName: string, windowObj = window) {
+  return propName.startsWith('on') && propName.toLowerCase() in windowObj;
+}
+
+export function extractEventName(propName: string) {
+  return propName.split('n')[1].toLowerCase();
+}
+
 function appendChildHelper(
   parent: HTMLElement,
   children: string | HTMLElement | HTMLElement[]
@@ -44,12 +49,4 @@ function appendChildHelper(
         : children
     );
   }
-}
-
-export function isEventHandler(propName: string, windowObj = window) {
-  return propName.startsWith('on') && propName.toLowerCase() in windowObj;
-}
-
-export function extractEventName(propName: string) {
-  return propName.split('n')[1].toLowerCase();
 }
