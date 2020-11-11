@@ -29,6 +29,8 @@
   },
   "homepage": "https://github.com/YashdalfTheGray/jsx-to-dom#readme",
   "devDependencies": {
+    "@babel/core": "^7.12.3",
+    "@babel/preset-react": "^7.12.5",
     "@types/jsdom": "^16.2.5",
     "ava": "~3.13.0",
     "husky": "~4.3.0",
