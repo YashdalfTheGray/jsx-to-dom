@@ -13,6 +13,12 @@ export default function createElement(
     }
   });
 
+  children.forEach((child) => {
+    element.appendChild(
+      !!child.nodeType ? document.createTextNode(child.toString()) : child
+    );
+  });
+
   return element;
 }
 
