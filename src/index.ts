@@ -27,6 +27,10 @@ export default function createElement(
   return element;
 }
 
+export function createFragment(_: object = {}, ...children: HTMLElement[]) {
+  return children;
+}
+
 function appendChildHelper(
   parent: HTMLElement,
   children: string | HTMLElement | HTMLElement[]
