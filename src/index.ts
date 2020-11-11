@@ -1,8 +1,17 @@
+export type FunctionalComponent = (
+  props: object,
+  ...children: HTMLElement[]
+) => HTMLElement;
+
 export default function createElement(
-  tag: string,
+  tag: string | FunctionalComponent,
   props: object = {},
   ...children: HTMLElement[]
 ) {
+  if (typeof tag === 'function') {
+    return tag(props, ...children);
+  }
+
   const element = document.createElement(tag);
 
   Object.entries(props || {}).forEach(([key, value]) => {
@@ -13,11 +22,7 @@ export default function createElement(
     }
   });
 
-  children.forEach((child) => {
-    element.appendChild(
-      !!child.nodeType ? document.createTextNode(child.toString()) : child
-    );
-  });
+  children.forEach((child) => appendChildHelper(element, child));
 
   return element;
 }
