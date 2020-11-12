@@ -1,4 +1,6 @@
-export default {
+import * as babelCore from '@babel/core';
+
+const babelConfiguration: babelCore.TransformOptions = {
   presets: [
     [
       '@babel/preset-react',
@@ -8,4 +10,7 @@ export default {
       },
     ],
   ],
+  plugins: ['@babel/plugin-proposal-class-properties'],
 };
+
+export default babelConfiguration;
