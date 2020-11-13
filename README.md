@@ -36,3 +36,13 @@ Once installed, configuring it is fairly simple and code snippets are included b
   ]
 }
 ```
+
+Once you have this set up with Babel, you need to import `createElement` and optionally, `createFragment` from `@yashdalfthegray/jsx-to-dom`. As a point of clarification, `createElement` is a default export while `createFragment` is not.
+
+```tsx
+import createElement, { createFragment } from '@yashdalfthegray/jsx-to-dom';
+
+// rest of your JSX/TSX code
+```
+
+This will then transpile your JSX into just `createElement` calls which, internally, call DOM operations to render HTML. This does mean that you need to run this library in production, it is not just a build tool.
