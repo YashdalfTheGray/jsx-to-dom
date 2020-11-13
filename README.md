@@ -46,3 +46,33 @@ import createElement, { createFragment } from '@yashdalfthegray/jsx-to-dom';
 ```
 
 This will then transpile your JSX into just `createElement` calls which, internally, call DOM operations to render HTML. This does mean that you need to run this library in production, it is not just a build tool.
+
+## Caveats (so far)
+
+The main caveat to realize here is that React brings, with it, a lot of things in addition to JSX, all of the virtual DOM stuff, event handling, component creation, etc. aren't part of this package so you'll have to find some way of handling that yourself.
+
+A more technical caveat being functional references in attributes won't work properly, you need to pass in a function constant instead. For example,
+
+```tsx
+class MyComponent {
+  public render() {
+    return <div onClick={this.handleClick}>Some text</div>;
+  }
+
+  handleClick = () => console.log('div was clicked');
+}
+```
+
+will not work since even though the code is transpiled, the `click` event for the element will be set to the string value, `"this.handleClick"` which won't refer to anything useful.
+
+Instead, the supported way to do this would be to inline the function, as shown,
+
+```tsx
+class MyComponent {
+  public render() {
+    return <div onClick={() => console.log('div was clicked')}>Some text</div>;
+  }
+}
+```
+
+Now, the `click` event handler will be set to a function that will do the right things.
