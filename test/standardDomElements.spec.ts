@@ -10,14 +10,10 @@ const testCode = `
       return (
         <div
           style="display: flex;"
-          onClick={this.handleClick}>
+          onClick={() => console.log('element was clicked')}>
           <h1>This is a test</h1>
         </div>
       )
-    }
-
-    handleClick = () => {
-      console.log('element was clicked');
     }
   }
   `;
