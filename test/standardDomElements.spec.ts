@@ -20,8 +20,10 @@ const testCode = `
 
 babelCore.transform(testCode, javascriptConfig, (err, result) => {
   if (!err) {
-    console.log(result);
+    console.log(result?.code);
+    process.exit(0);
   } else {
     console.error(err);
+    process.exit(1);
   }
 });
