@@ -1,6 +1,6 @@
 import * as babelCore from '@babel/core';
 
-import babelPresets from './babelPresets';
+import { javascriptConfig } from './babelPresets';
 
 const testCode = `
   import createElement from '../src/index';
@@ -18,7 +18,7 @@ const testCode = `
   }
   `;
 
-babelCore.transform(testCode, babelPresets, (err, result) => {
+babelCore.transform(testCode, javascriptConfig, (err, result) => {
   if (!err) {
     console.log(result);
   } else {
