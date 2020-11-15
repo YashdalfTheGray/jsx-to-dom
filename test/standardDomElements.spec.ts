@@ -1,4 +1,5 @@
 import * as babelCore from '@babel/core';
+import * as chalk from 'chalk';
 
 import { javascriptConfig } from './babelPresets';
 
@@ -34,7 +35,9 @@ babelCore.transform(testCode, javascriptConfig, (err, result) => {
   if (!err) {
     const matches = result?.code === expected;
     console.log(
-      `Test: standard DOM components, result: ${matches ? 'match' : 'mismatch'}`
+      `Test: standard DOM components | result: ${
+        matches ? chalk.green('match') : chalk.red('mismatch')
+      }`
     );
 
     if (!matches) {
