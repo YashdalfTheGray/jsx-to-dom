@@ -18,12 +18,30 @@ class StandardDomComponent {
 }
 `;
 
+const expected = `import createElement from '../src/index';
+
+class StandardDomComponent {
+  render() {
+    return createElement("div", {
+      style: "display: flex;",
+      onClick: () => console.log('element was clicked')
+    }, createElement("h1", null, "This is a test"));
+  }
+
+}`;
+
 babelCore.transform(testCode, javascriptConfig, (err, result) => {
   if (!err) {
-    console.log(result?.code);
-    process.exit(0);
+    const matches = result?.code === expected;
+    console.log(
+      `Test: standard DOM components, result: ${matches ? 'match' : 'mismatch'}`
+    );
+
+    if (!matches) {
+      process.exit(1);
+    }
   } else {
+    console.log('There was an error compiling the test code.');
     console.error(err);
-    process.exit(1);
   }
 });
