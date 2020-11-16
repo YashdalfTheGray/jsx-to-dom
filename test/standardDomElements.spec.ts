@@ -1,5 +1,6 @@
 import * as babelCore from '@babel/core';
 import * as chalk from 'chalk';
+import * as diff from 'diff';
 
 import { javascriptConfig } from './babelPresets';
 
@@ -33,15 +34,16 @@ class StandardDomComponent {
 
 babelCore.transform(testCode, javascriptConfig, (err, result) => {
   if (!err) {
-    const matches = result?.code === expected;
-    console.log(
-      `Test: standard DOM components | result: ${
-        matches ? chalk.green('match') : chalk.red('mismatch')
-      }`
-    );
+    const changes = diff.diffLines(expected, result?.code || '');
 
-    if (!matches) {
-      process.exit(1);
+    if (changes.length !== 0) {
+      console.log(
+        `Test: standard DOM elements | result: ${chalk.red('mismatch')}`
+      );
+    } else {
+      console.log(
+        `Test: standard DOM elements | result: ${chalk.green('match')}`
+      );
     }
   } else {
     console.log('There was an error compiling the test code.');
