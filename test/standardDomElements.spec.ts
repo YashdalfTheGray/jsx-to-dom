@@ -36,16 +36,16 @@ babelCore.transform(testCode, javascriptConfig, (err, result) => {
   if (!err) {
     const changes = diff.diffLines(expected, result?.code || '');
 
-    if (changes.length !== 0) {
+    if (changes.length > 1) {
       console.log(
         `Test: standard DOM elements | result: ${chalk.red('mismatch')}`
       );
 
       changes.forEach((c) => {
         if (c.added) {
-          console.log(chalk.green(c.value));
+          console.log(chalk.green(`+ ${c.value}`));
         } else if (c.removed) {
-          console.log(chalk.red(c.value));
+          console.log(chalk.red(`- ${c.value}`));
         }
       });
     } else {
