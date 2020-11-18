@@ -3,6 +3,7 @@ import * as chalk from 'chalk';
 import * as diff from 'diff';
 
 import { javascriptConfig } from './babelPresets';
+import { printChanges } from './utils';
 
 const testCode = `
 import createElement from '../src/index';
@@ -40,14 +41,7 @@ babelCore.transform(testCode, javascriptConfig, (err, result) => {
       console.log(
         `Test: standard DOM elements | result: ${chalk.red('mismatch')}`
       );
-
-      changes.forEach((c) => {
-        if (c.added) {
-          console.log(chalk.green(`+ ${c.value}`));
-        } else if (c.removed) {
-          console.log(chalk.red(`- ${c.value}`));
-        }
-      });
+      printChanges(changes);
     } else {
       console.log(
         `Test: standard DOM elements | result: ${chalk.green('match')}`
