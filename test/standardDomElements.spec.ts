@@ -35,7 +35,7 @@ class StandardDomComponent {
 
 babelCore.transform(testCode, javascriptConfig, (err, result) => {
   if (!err) {
-    const changes = diff.diffLines(expected, result?.code || '');
+    const changes = diff.diffLines(result?.code || '', expected);
 
     if (changes.length > 1) {
       console.log(

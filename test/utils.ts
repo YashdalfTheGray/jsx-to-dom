@@ -13,10 +13,17 @@ export function printChanges(changes: Change[]) {
 
 function formatDiffByLine(diff: string, marker: '+' | '-'): string {
   const color = marker === '+' ? 'green' : 'red';
+  const bgColor = marker === '+' ? 'bgGreen' : 'bgRed';
   const diffParts = diff.split('\n');
+
+  console.log(diffParts);
 
   return diffParts
     .slice(0, diffParts.length - 1)
-    .map((line) => chalk[color](`${marker} ${line}`))
+    .map((line) =>
+      chalk[color](
+        `${marker} ${/^\s*$/.test(line) ? chalk[bgColor](line) : line}`
+      )
+    )
     .join('\n');
 }
