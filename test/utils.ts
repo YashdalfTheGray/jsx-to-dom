@@ -1,11 +1,22 @@
 import * as chalk from 'chalk';
+import { Change } from 'diff';
 
-export function printChanges(changes: Diff.Change[]) {
+export function printChanges(changes: Change[]) {
   changes.forEach((c) => {
     if (c.added) {
-      console.log(chalk.green(`+ ${c.value}`));
+      console.log(formatDiffByLine(c.value, '+'));
     } else if (c.removed) {
-      console.log(chalk.red(`- ${c.value}`));
+      console.log(formatDiffByLine(c.value, '-'));
     }
   });
+}
+
+function formatDiffByLine(diff: string, marker: '+' | '-'): string {
+  const color = marker === '+' ? 'green' : 'red';
+  const diffParts = diff.split('\n');
+
+  return diffParts
+    .slice(0, diffParts.length - 1)
+    .map((line) => chalk[color](`${marker} ${line}`))
+    .join('\n');
 }
