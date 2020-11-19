@@ -2,14 +2,17 @@ import * as babelCore from '@babel/core';
 import * as chalk from 'chalk';
 import * as diff from 'diff';
 
-import { typescriptConfig } from './babelPresets';
 import { printChanges } from './utils';
 
 export default class Test {
-  constructor(protected testCode: string, protected expected: string) {}
+  constructor(
+    protected testCode: string,
+    protected expected: string,
+    protected babelConfig: babel.TransformOptions
+  ) {}
 
   public run() {
-    babelCore.transform(this.testCode, typescriptConfig, (err, result) => {
+    babelCore.transform(this.testCode, this.babelConfig, (err, result) => {
       if (!err) {
         const changes = diff.diffLines(result?.code || '', this.expected);
 
