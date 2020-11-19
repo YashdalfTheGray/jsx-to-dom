@@ -16,8 +16,6 @@ function formatDiffByLine(diff: string, marker: '+' | '-'): string {
   const bgColor = marker === '+' ? 'bgGreen' : 'bgRed';
   const diffParts = diff.split('\n');
 
-  console.log(diffParts);
-
   return diffParts
     .slice(0, diffParts.length - 1)
     .map((line) =>

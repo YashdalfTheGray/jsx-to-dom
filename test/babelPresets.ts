@@ -26,6 +26,7 @@ export const typescriptConfig: babelCore.TransformOptions = {
       '@babel/preset-typescript',
       {
         isTSX: true,
+        allExtensions: true,
         jsxPragma: 'createElement',
       },
     ],
