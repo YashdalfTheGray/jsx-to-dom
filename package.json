@@ -10,7 +10,8 @@
     "build": "tsc",
     "start": "npm run build",
     "clean": "npx rimraf dist/",
-    "open-coverage": "npx open coverage/index.html"
+    "open-coverage": "npx open coverage/index.html",
+    "integ-tests": "ts-node test/index.ts"
   },
   "repository": {
     "type": "git",
