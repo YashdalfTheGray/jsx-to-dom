@@ -30,4 +30,9 @@ class StandardDomComponent {
 
 }`;
 
-export default new Test(testCode, expected, javascriptConfig);
+export default new Test(
+  'Standard DOM elements (JS)',
+  testCode,
+  expected,
+  javascriptConfig
+);

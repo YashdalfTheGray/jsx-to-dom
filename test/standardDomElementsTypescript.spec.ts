@@ -36,4 +36,9 @@ class StandardDomComponent {
 
 }`;
 
-export default new Test(testCode, expected, typescriptConfig);
+export default new Test(
+  'Standard DOM elements (TS)',
+  testCode,
+  expected,
+  typescriptConfig
+);
