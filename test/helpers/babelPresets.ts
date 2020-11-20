@@ -1,6 +1,6 @@
 import * as babelCore from '@babel/core';
 
-export const javascriptConfig: babelCore.TransformOptions = {
+export const babelConfigForJs: babelCore.TransformOptions = {
   presets: [
     [
       '@babel/preset-react',
@@ -13,7 +13,7 @@ export const javascriptConfig: babelCore.TransformOptions = {
   plugins: ['@babel/plugin-proposal-class-properties'],
 };
 
-export const typescriptConfig: babelCore.TransformOptions = {
+export const babelConfigForTs: babelCore.TransformOptions = {
   presets: [
     [
       '@babel/preset-react',

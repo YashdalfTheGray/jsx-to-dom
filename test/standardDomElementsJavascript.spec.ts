@@ -1,6 +1,4 @@
-import Test from './Test';
-
-import { javascriptConfig } from './babelPresets';
+import { Test, babelConfigForJs } from './helpers';
 
 const testCode = `
 import createElement from '../src/index';
@@ -34,5 +32,5 @@ export default new Test(
   'Standard DOM elements (JS)',
   testCode,
   expected,
-  javascriptConfig
+  babelConfigForJs
 );

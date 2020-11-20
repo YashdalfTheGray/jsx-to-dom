@@ -2,8 +2,6 @@ import * as babelCore from '@babel/core';
 import * as chalk from 'chalk';
 import * as diff from 'diff';
 
-import { printChanges } from './utils';
-
 export default class Test {
   constructor(
     protected testName: string,
@@ -21,7 +19,7 @@ export default class Test {
           console.log(
             `Test: ${this.testName} | result: ${chalk.red('mismatch')}`
           );
-          printChanges(changes);
+          this.printChanges(changes);
         } else {
           console.log(
             `Test: ${this.testName} | result: ${chalk.green('match')}`
@@ -32,5 +30,30 @@ export default class Test {
         console.error(err);
       }
     });
+  }
+
+  protected printChanges(changes: diff.Change[]) {
+    changes.forEach((c) => {
+      if (c.added) {
+        console.log(this.formatDiffByLine(c.value, '+'));
+      } else if (c.removed) {
+        console.log(this.formatDiffByLine(c.value, '-'));
+      }
+    });
+  }
+
+  protected formatDiffByLine(diffString: string, marker: '+' | '-'): string {
+    const color = marker === '+' ? 'green' : 'red';
+    const bgColor = marker === '+' ? 'bgGreen' : 'bgRed';
+    const diffParts = diffString.split('\n');
+
+    return diffParts
+      .slice(0, diffParts.length - 1)
+      .map((line) =>
+        chalk[color](
+          `${marker} ${/^\s*$/.test(line) ? chalk[bgColor](line) : line}`
+        )
+      )
+      .join('\n');
   }
 }
