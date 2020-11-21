@@ -7,13 +7,20 @@ export default class Test {
     protected testName: string,
     protected testCode: string,
     protected expected: string,
-    protected babelConfig: babel.TransformOptions
+    protected babelConfig: babel.TransformOptions,
+    protected debug: boolean = false
   ) {}
 
   public run() {
     babelCore.transform(this.testCode, this.babelConfig, (err, result) => {
       if (!err) {
         const changes = diff.diffLines(result?.code || '', this.expected);
+
+        if (this.debug) {
+          console.log('\n\nDebug mode enabled');
+          console.log(result?.code);
+          console.log('\n\n');
+        }
 
         if (changes.length > 1) {
           console.log(
