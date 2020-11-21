@@ -1,6 +1,5 @@
 import standardDomJs from './standardDomElementsJavascript.spec';
 import standardDomTs from './standardDomElementsTypescript.spec';
+import functionalComponentJs from './functionalComponentJavascript.spec';
 
-const tests = [standardDomJs, standardDomTs];
-
-tests.forEach((t) => t.run());
+[standardDomJs, standardDomTs, functionalComponentJs].forEach((t) => t.run());
