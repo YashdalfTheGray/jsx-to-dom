@@ -9,7 +9,23 @@ export default class Test {
     protected expected: string,
     protected babelConfig: babel.TransformOptions,
     protected debug: boolean = false
-  ) {}
+  ) {
+    if (!testName || testName.length === 0) {
+      throw new Error('Test name cannot be empty.');
+    }
+
+    if (!testCode || testCode.length === 0) {
+      throw new Error('Code to test cannot be empty.');
+    }
+
+    if (!expected || expected.length === 0) {
+      throw new Error('Expected result cannot be empty.');
+    }
+
+    if (!babelConfig) {
+      throw new Error('Babel configuration is required to transpile th test');
+    }
+  }
 
   public run() {
     babelCore.transform(this.testCode, this.babelConfig, (err, result) => {
