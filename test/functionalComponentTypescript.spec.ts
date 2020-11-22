@@ -20,15 +20,17 @@ export default MyFunctionalComponent;
 const expected = `import createElement from '../src/index';
 
 const MyFunctionalComponent = ({
-  name
+  name: string
 }) => createElement("div", {
   className: "container"
 }, createElement("div", {
   className: "header"
-}, createElement("strong", null, name)));`;
+}, createElement("strong", null, name)));
+
+export default MyFunctionalComponent;`;
 
 export default new Test(
-  'Functional Component (JS)',
+  'Functional Component (TS)',
   testCode,
   expected,
   babelConfigForTs
