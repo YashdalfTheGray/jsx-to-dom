@@ -30,7 +30,7 @@ const MyFunctionalComponent = ({
 export default MyFunctionalComponent;`;
 
 export default new Test(
-  'Functional Component (TS)',
+  'Functional component (TS)',
   testCode,
   expected,
   babelConfigForTs

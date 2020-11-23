@@ -27,7 +27,7 @@ const MyFunctionalComponent = ({
 export default MyFunctionalComponent;`;
 
 export default new Test(
-  'Functional Component (JS)',
+  'Functional component (JS)',
   testCode,
   expected,
   babelConfigForJs
